@@ -48,6 +48,7 @@ describe('fsagent', function () {
   });
 
   it('can watch a directory for changes', function (done) {
+    this.timeout(10000);
     var dir = join(__dirname, 'fixtures')
       , watch = fsagent.watch(dir)
       , file = join(dir, 'a', 'b', 'c.txt');
