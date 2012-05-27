@@ -2,6 +2,7 @@
 test/
 puppet/
 Vagrantfile
+.vagrant
 .DS_Store
 coverage.html
 lib-cov
