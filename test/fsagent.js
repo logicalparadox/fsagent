@@ -64,11 +64,14 @@ describe('fsagent', function () {
         fs.writeFile(file, 'hello universe', 'utf8');
     });
 
+    var ulCalled = false;
     var changeSpy = chai.spy(function (f, s) {
       should.exist(f);
       should.exist(s);
-      if (f === file)
+      if (f === file) {
+        ulCalled = true;
         fs.unlink(file);
+      }
     });
 
     var deleteSpy = chai.spy(function (f) {
@@ -77,7 +80,11 @@ describe('fsagent', function () {
     });
 
     var unwatchSpy = chai.spy(function (f) {
-      if (f === file) cleanUp();
+      if (f === file) {
+        setTimeout(function () {
+          cleanUp();
+        }, 100);
+      }
     });
 
     watch.on('watch', watchSpy);
@@ -94,9 +101,9 @@ describe('fsagent', function () {
     function cleanUp () {
       watchSpy.should.have.been.called.above(1);
       createSpy.should.have.been.called.above(1);
-      changeSpy.should.have.been.called.once;
-      deleteSpy.should.have.been.called.once;
-      unwatchSpy.should.have.been.called.once;
+      changeSpy.should.have.been.called();
+      deleteSpy.should.have.been.called();
+      unwatchSpy.should.have.been.called();
       watch.clear();
       done();
     }
