@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/logicalparadox/fsagent.png?branch=master)](http://travis-ci.org/logicalparadox/fsagent)
+
 # FSAgent
 
 > Keep calm and carry on.
@@ -64,7 +66,7 @@ Tests are writting in [Mocha](http://github.com/visionmedia/mocha) using
 the [Chai](http://chaijs.com) `should` BDD assertion library. Make sure you 
 have that installed, clone this repo, install dependacies using `npm install`.
 
-    $ make test
+    $ npm test
 
 ## Contributors
 
