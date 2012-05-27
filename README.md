@@ -10,6 +10,7 @@ with node.js `fs` operations.
 This module has been tested and confirmed working on:
 
 - OSX Lion
+- Ubuntu Precise
 
 ## Installation
 
