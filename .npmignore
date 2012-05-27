@@ -1,5 +1,7 @@
 .git*
 test/
+puppet/
+Vagrantfile
 .DS_Store
 coverage.html
 lib-cov
