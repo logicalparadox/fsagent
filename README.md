@@ -47,7 +47,7 @@ fsagent.rmdir(dir, function (err) {
 Recursive directory observeration using node's `fs.watch`.
 
 ```js
-var watch = fsagent.watch(__dirname, 'hello');
+var watch = fsagent.watch(path.join(__dirname, 'hello'));
 ```
 
 `fsagent.watch` returns an event emitter which will emit the following events:
