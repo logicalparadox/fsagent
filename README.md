@@ -1,11 +1,15 @@
-[![Build Status](https://secure.travis-ci.org/logicalparadox/fsagent.png?branch=master)](http://travis-ci.org/logicalparadox/fsagent)
-
 # FSAgent
 
 > Keep calm and carry on.
 
-The FSAgent is collection of tools that (hopefully) work cross-platform that assist
+The FSAgent is collection of tools that work cross-platform that assist
 with node.js `fs` operations. 
+
+### Compatibility
+
+This module has been tested and confirmed working on:
+
+- OSX Lion
 
 ## Installation
 
@@ -39,7 +43,7 @@ fsagent.rmdir(dir, function (err) {
 
 #### watch
 
-Recursive directory observeration using node's `fs.watch`. (Should) work on Windows.
+Recursive directory observeration using node's `fs.watch`.
 
 ```js
 var watch = fsagent.watch(__dirname, 'hello');
