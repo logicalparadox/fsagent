@@ -1,4 +1,11 @@
 
+0.2.0 / 2012-06-26 
+==================
+
+  * fix path depreciation warning, merge all fs functions onto exports
+  * typo in readme
+  * ubuntu tested
+
 0.1.0 / 2012-05-26 
 ==================
 
