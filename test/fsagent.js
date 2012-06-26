@@ -17,15 +17,20 @@ describe('fsagent', function () {
   });
 
   after(function (done) {
-    fsagent.rmdir(join(__dirname, 'fixtures'), function (err) {
+    fsagent.rimraf(join(__dirname, 'fixtures'), function (err) {
       done();
     });
+  });
+
+  it('has all of the fs modules functions', function () {
+    var keys = Object.keys(fs);
+    fsagent.should.include.keys(keys);
   });
 
   it('can create a nested group of folders', function (done) {
     var dir = join(__dirname, 'fixtures', 'a', 'b');
     fsagent.existsSync(dir).should.be.false;
-    fsagent.mkdir(dir, function (err) {
+    fsagent.mkdirp(dir, function (err) {
       should.not.exist(err);
       fsagent.existsSync(dir).should.be.true;
       done();
@@ -38,7 +43,7 @@ describe('fsagent', function () {
     fsagent.existsSync(join(dir, 'b')).should.be.true;
     fs.writeFileSync(file, 'hello universe', 'utf8');
     fsagent.existsSync(file).should.be.true;
-    fsagent.rmdir(dir, function (err) {
+    fsagent.rimraf(dir, function (err) {
       should.not.exist(err);
       fsagent.existsSync(file).should.be.false;
       fsagent.existsSync(dir).should.be.false;
@@ -49,7 +54,7 @@ describe('fsagent', function () {
 
   it('can watch a directory for changes', function (done) {
     var dir = join(__dirname, 'fixtures')
-      , watch = fsagent.watch(dir)
+      , watch = fsagent.watcher(dir)
       , file = join(dir, 'a', 'b', 'c.txt');
 
     var watchSpy = chai.spy(function (f) {
@@ -93,7 +98,7 @@ describe('fsagent', function () {
     watch.on('delete', deleteSpy);
     watch.on('unwatch', unwatchSpy);
 
-    fsagent.mkdir(join(dir, 'a', 'b'), function (err) {
+    fsagent.mkdirp(join(dir, 'a', 'b'), function (err) {
       should.not.exist(err);
       fs.writeFileSync(file, 'hello world', 'utf8');
     });
