@@ -27,6 +27,18 @@ describe('fsagent', function () {
     fsagent.should.include.keys(keys);
   });
 
+  it('can copy a file', function (done) {
+    var fileIn = join(__dirname, 'fixtures', 'copyme.txt')
+      , fileOut = join(__dirname, 'fixtures', 'imacopy.txt');
+    fs.writeFileSync(fileIn, 'hello universe', 'utf8');
+    fsagent.existsSync(fileOut).should.be.false;
+    fsagent.copy(fileIn, fileOut, function (err) {
+      should.not.exist(err);
+      fsagent.existsSync(fileOut).should.be.true;
+      done();
+    });
+  });
+
   it('can create a nested group of folders', function (done) {
     var dir = join(__dirname, 'fixtures', 'a', 'b');
     fsagent.existsSync(dir).should.be.false;
