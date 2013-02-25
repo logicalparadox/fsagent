@@ -1,4 +1,10 @@
 
+0.4.0 / 2013-02-25 
+==================
+
+  * test: [copy] test for copy utility
+  * copy: add copy utility
+
 0.3.0 / 2012-07-10 
 ==================
 
